@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include "/lib/utils.h"
+#include "/lib/rdtsc.h"
+
+int main(int argc, char* argv[]) {
+	unsigned long long start, end, diff;
+	int runs = atoi(argv[1]);
+	int i, pid;
+	printf("%i\n",runs);
+
+	for (i = 0; i < runs; i++) {
+		 pid = fork();
+	         if (pid == 0) {
+			start = rdtsc();
+			getpid();
+			end = rdtsc();
+			diff = end - start;
+			printf("%llu\n", diff);
+			return 0;
+		}
+			
+	}
+	
+}

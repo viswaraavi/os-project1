@@ -1,0 +1,108 @@
+#include<stdio.h>
+#include <stdlib.h>
+#include "/lib/rdtscp.h"
+
+  __attribute__ ((noinline)) void test() {}
+
+  __attribute__ ((noinline)) void test1(int a) {}
+
+  __attribute__ ((noinline)) void test2(int a, int b) {}
+
+  __attribute__ ((noinline)) void test3(int a, int b, int c) {}
+
+  __attribute__ ((noinline)) void test4(int a, int b, int c, int d) {}
+
+  __attribute__ ((noinline)) void test5(int a, int b, int c, int d, int e) {}
+
+  __attribute__ ((noinline)) void test6(int a, int b, int c, int d, int e, int f) {}
+
+  __attribute__ ((noinline)) void test7(int a, int b, int c, int d, int e, int f, int h) {}
+
+int main(int argc, char* argv[]) {
+   unsigned long long start, end, diff, total;
+   int i, runs;
+  
+   runs = atoi(argv[1]);
+	
+ total = 0;
+ for(i = 0; i<runs; i++) {
+   start = rdtsc();
+   test();
+   end = rdtsc();
+   diff = end - start;
+   total += diff;
+ }
+   printf("%llu\n", total / runs );		
+
+ total = 0;
+ for(i = 0; i<runs; i++) {
+   start = rdtsc();
+   test1(1);
+   end = rdtsc();
+   diff = end - start;
+   total += diff;
+ }
+   printf("%llu\n", total / runs );		
+
+ total = 0;
+ for(i = 0; i<runs; i++) {
+   start = rdtsc();
+   test2(1, 2);
+   end = rdtsc();
+   diff = end - start;
+   total += diff;
+ }
+   printf("%llu\n", total / runs );		
+
+ total = 0;
+ for(i = 0; i<runs; i++) {
+   start = rdtsc();
+   test3(1, 2, 3);
+   end = rdtsc();
+   diff = end - start;
+   total += diff;
+ }
+   printf("%llu\n", total / runs );		
+
+ total = 0;
+ for(i = 0; i<runs; i++) {
+   start = rdtsc();
+   test4(1, 2, 3, 4);
+   end = rdtsc();
+   diff = end - start;
+   total += diff;
+ }
+   printf("%llu\n", total / runs );		
+
+ total = 0;
+ for(i = 0; i<runs; i++) {
+   start = rdtsc();
+   test5(1, 2, 3, 4, 5);
+   end = rdtsc();
+   diff = end - start;
+   total += diff;
+ }
+   printf("%llu\n", total / runs );		
+
+ total = 0;
+ for(i = 0; i<runs; i++) {
+   start = rdtsc();
+   test6(1, 2, 3, 4, 5, 6);
+   end = rdtsc();
+   diff = end - start;
+   total += diff;
+ }
+   printf("%llu\n", total / runs );		
+
+ total = 0;
+ for(i = 0; i<runs; i++) {
+   start = rdtsc();
+   test7(1, 2, 3, 4, 5, 6,7);
+   end = rdtsc();
+   diff = end - start;
+   total += diff;
+ }
+   printf("%llu\n", total / runs );		
+
+}
+

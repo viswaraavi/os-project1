@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <pthread.h>
+#include "/lib/rdtsc.h"
+#include "/lib/utils.h"
+
+
+    static void * thread_start(void *arg)
+       {
+           //printf("Thread starts\n" );
+       }
+
+       int main(int argc, char *argv[])
+       {
+	   int i,  runs = atoi(argv[1]);
+           unsigned long long start, end, diff, total = 0;
+           pthread_t *t = (pthread_t *) malloc(sizeof(pthread_t *) * runs);
+	   for (i = 0; i < runs; i++) {
+	       start = rdtsc();
+               pthread_create(&t[i], NULL, &thread_start, NULL);               
+               end = rdtsc();
+	       diff = end - start;
+	       total += diff;
+           }        
+	free(t);
+	printf("%llu\n", total / runs);
+         
+      }
