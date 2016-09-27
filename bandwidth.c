@@ -53,15 +53,15 @@ for(int i=0;i<=SAMPLES;i++){
 unsigned long long readbw=read_memory(SIZE);
 read_avg=read_avg+readbw;
 }
-unsigned long long readbw=read_avg/10;
+unsigned long long readbw=read_avg/100;
 unsigned long long write_avg=0;
 for(int i=0;i<=SAMPLES;i++){
 unsigned long long writebw=write_memory(SIZE);
 write_avg=write_avg+writebw;
 }
-unsigned long long writebw=write_avg/10;
+unsigned long long writebw=write_avg/100;
 
-printf("latency for ready time %llu\n latency for write time %llu\n memory bandwidth while reading %f\n memory bandwidth while writing %f \n",readbw,writebw,1024/((double)readbw/3e9),1024/((double)writebw/3e9));
+printf("latency for ready time %llu\n latency for write time %llu\n memory bandwidth while reading %f\n memory bandwidth while writing %f \n",readbw,writebw,1024/((double)readbw/1.75e9),1024/((double)writebw/1.75e9));
 }
 
 
